@@ -1,0 +1,50 @@
+Geometry = GenFormat {
+    # geometry input file
+    <<< geo.gen
+}
+
+Driver = GeometryOptimisation{ 
+  Optimizer = Rational{} 
+  MovedAtoms = 1:-1
+  Convergence = {
+  GradElem = 1E-5 }
+  MaxSteps = 150
+  OutputPrefix = "geom.out"
+  FixAngles = Yes
+  FixLengths = {No No No}
+  LatticeOpt = Yes  
+}
+
+Hamiltonian = xTB {
+
+    Method = "GFN1-xTB" 
+
+    
+    KPointsAndWeights = SupercellFolding {
+        4 0 0
+        0 4 0
+        0 0 4
+        0.0 0.0 0.0
+    }
+
+}
+
+Options = {
+    # Required options for storing data needed by phonopy
+    WriteResultsTag = Yes
+    #WriteHS = Yes
+    #WriteRealHS = Yes
+}
+
+ParserOptions = {
+    # input parser version for DFTB+ 18.2, but this is backward
+    # compatible
+    ParserVersion = 6
+}
+
+Analysis = {
+    # required option for phonopy
+    Printforces = Yes
+}
+
+	

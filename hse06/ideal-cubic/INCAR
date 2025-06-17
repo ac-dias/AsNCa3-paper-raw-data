@@ -1,0 +1,99 @@
+Electronic relaxation:
+
+!ISTART = 0      !inicio "from scratch"
+ENCUT  = 450.000 !energia de cutoff
+ALGO   = All  !algoritmo para minimizacao eletronica
+NELM   = 200      !valor default para numero de passos SCF
+NELMIN = 6       !numero minimo de passos SCF
+NELMDL = -12     !numero de passos NSCF no inicio
+EDIFF  = 1.0E-5  !criterio de convergencia SCF
+AMIX   = 0.1     !mix densidade pmix=(1-AMIX)*pin+AMIX*pout
+BMIX   = 0.0001  !outra variavel para misturar densidade
+NBANDS = 128      !numero de bandas para calculo sem SOC 
+
+Calculation mode:
+PREC    = Accurate !influencia a FFT
+IVDW    = 0       !interacao vdW Grimme D3
+ISPIN   = 1        !spin nao polarizado
+ADDGRID = .TRUE.   !grid adicional para diminuir ruido no calculo das forcas
+LASPH   = .TRUE.
+
+LREAL = Auto
+
+#Hybrid Calculation
+LHFCALC  = .TRUE.    # Hartree-Fock type calculations are performed
+AEXX     = 0.250     #fraction of exact exchange
+HFSCREEN = 0.207     # Determines the range separation parameter in range separated hybrid functionals
+
+
+Ionic relaxation:
+NSW    = 0        !numero maximo de passos na relaxacao
+EDIFFG = -0.010    ! para a relaxacao quando as forcas forem menores que |EDIFFG|
+IBRION = 2         !algoritmo para relaxacao da rede, POTIM não interfere muito
+ISIF   = 0         !relaxacao da celula unitaria e ions, muda forma e volume da celula (2 pode vir a ser melhor)
+POTIM  = 0.5
+STRESSTYPE = 3
+
+Integration over the Brillouin zone (BZ):
+ISMEAR = 0    !Gaussian-smearing
+SIGMA  = 0.01 !largura do smearing em eV
+
+DOS calculation:
+LORBIT = 10   !escreve DOSCAR e PROCAR
+NEDOS  = 6001     !numero de pontos no grid da DOS 
+
+OUTCAR size:
+NWRITE =  1       !informacao escrita no OUTCAR
+LWAVE  = .FALSE. !nao escreve o WAVECAR
+LCHARG = .FALSE. !nao escreve o CHGCAR e CHG
+
+Key for parallel mode calculation:
+KPAR  = 4      !numero de cores por orbital
+LPLANE = .TRUE.
+
+LWANNIER90 = .TRUE.
+NUM_WANN = 128
+
+WANNIER90_WIN="
+
+Begin Projections
+random
+As:  s,p,d
+N:   p
+Ca:  s,p,d
+End Projections
+
+use_ws_distance=.false.
+
+#dis_froz_min = -11
+#dis_froz_max = 3.5
+
+#dis_win_min = -18
+#dis_win_max = 7.0
+
+spinors = false
+
+num_iter = 1000
+
+kmesh_tol = 0.000001
+#search_shells = 500
+
+guiding_centres = true
+
+!postproc_setup = T
+
+!restart = plot
+
+ write_hr = T
+
+bands_plot = T ! do a band structure calculation at the end
+	
+begin kpoint_path ! along the following path
+   G 0.0000000000     0.0000000000     0.0000000000      M 0.5000000000     0.0000000000     0.5000000000
+   M 0.5000000000     0.0000000000     0.5000000000      X 0.5000000000     0.0000000000     0.0000000000
+   X 0.5000000000     0.0000000000     0.0000000000      R 0.5000000000     0.5000000000     0.5000000000
+   R 0.5000000000     0.5000000000     0.5000000000      G 0.0000000000     0.0000000000     0.0000000000
+   G 0.0000000000     0.0000000000     0.0000000000      X 0.5000000000     0.0000000000     0.0000000000
+end kpoint_path
+"
+ 

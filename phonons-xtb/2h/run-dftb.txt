@@ -1,0 +1,7 @@
+export OMP_NUM_THREADS=$NCPUS
+
+export I_MPI_FABRICS=shm
+
+cd $PBS_O_WORKDIR
+
+dftb+ > output.dat
