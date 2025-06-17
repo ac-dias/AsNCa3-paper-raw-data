@@ -1,6 +1,6 @@
 # AsNCa3-paper-raw-data
 
-Raw input/output files to reproduce the computational study on the optoelectronic properties and photovoltaic potential of the antiperovskite **Ca₃AsN** (manuscript under review, 2025).
+Raw input/output files to reproduce the computational study on the optoelectronic properties and photovoltaic potential of the antiperovskite **AsNCa₃** (manuscript under review, 2025).
 
 ---
 
@@ -20,7 +20,7 @@ This repository adheres to the FAIR data principles—*Findable, Accessible, Int
 
 | Folder                                                       | Contents                                                                                                                  | Typical file types                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| `KPATH/`                                                     | High‑symmetry k‑point paths used for all band‑structure plots (set in units of the reciprocal lattice).                   | `kpath.dat`, `highsym.json`                           |
+| `KPATH/`                                                     | High‑symmetry k‑point paths used for all band‑structure plots (set in reciprocal lattice units).                   | `kpath.dat`, `highsym.json`                           |
 | `TB-data/`                                                   | Maximally localised Wannier functions (MLWFs) and tight‑binding Hamiltonians used by WanTiBEXOS for optical calculations. | `*.amn`, `*.mmn`, `wannier90.wout`, `ham_tb.dat`      |
 | `bands/`                                                     | Raw band‑energy eigenvalues on                                                                                            |                                                       |
 | *dense* and *high‑symmetry* k‑meshes, plus plotting scripts. | `EIGENVAL`, `band.dat`, `plot_bands.py`                                                                                   |                                                       |
@@ -30,7 +30,7 @@ This repository adheres to the FAIR data principles—*Findable, Accessible, Int
 | `hse06/`                                                     | Input and output files of all single‑shot HSE06 runs (high cutoff) used for band gaps and dielectric constants.           | `INCAR`, `KPOINTS`, `EIGENVAL`, `OUTCAR`              |
 | `phonons-xtb/`                                               | Phonopy inputs and force‑constant matrices derived from xTB forces (0 K).                                                 | `FORCE_SETS`, `phonopy.yaml`, `phonon_dispersion.dat` |
 | `stress-tensor/`                                             | Finite‑strain stress–strain data from PBE‑relaxed cells (VASP).                                                           | `strain.dat`, `stress.dat`, `fit_elastic.py`          |
-| `stress-tensor-xtb/`                                         | Same as above but computed with xTB for comparison and speed.                                                             | `strain_xtb.dat`, `stress_xtb.dat`                    |
+| `stress-tensor-xtb/`                                         | Same as above, but computed with xTB for comparison and speed.                                                             | `strain_xtb.dat`, `stress_xtb.dat`                    |
 
 ---
 
